@@ -9,6 +9,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page isELIgnored="false" %>
 
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -41,9 +42,38 @@
             }
         }
     </style>
+
+    <style>
+        tr:target {
+            background-color: #fff3cd !important; /* yellow */
+        }
+    </style>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const hash = window.location.hash.substring(1); // e.g., "PA166104826"
+            if (hash) {
+                // Remove previous highlights if any
+                document.querySelectorAll('tr.highlighted').forEach(tr => {
+                    tr.classList.remove('highlighted');
+                });
+
+                // Highlight the row with matching ID
+                const row = document.getElementById(hash);
+                if (row) {
+                    row.classList.add('highlighted');
+                    row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+        });
+    </script>
+
 </head>
 <body>
-<jsp:include page="head.jsp" />
+<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Precision Medicine Matching System</a>
+
+</nav>
 
 <div class="container-fluid">
     <div class="row">
@@ -67,7 +97,7 @@
                     </thead>
                     <tbody>
                     <c:forEach items="${drugLabels}" var="item">
-                        <tr>
+                        <tr id="${item.id}">
                             <td>${item.id}</td>
                             <td>${item.source}</td>
                             <td>${item.dosingInformation}</td>

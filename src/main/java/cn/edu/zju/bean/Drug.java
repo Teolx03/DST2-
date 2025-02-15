@@ -7,6 +7,8 @@ public class Drug {
     private boolean biomarker;
     private String drugUrl;
     private String ObjCls;
+    private String drugLabelId;         // New: stores comma-separated values
+    private String dosingGuidelineId;   // New: same here
 
     public Drug() {
     }
@@ -59,4 +61,19 @@ public class Drug {
         ObjCls = objCls;
     }
 
+    public String getDrugLabelId() {
+        return drugLabelId;
+    }
+
+    public void setDrugLabelId(String drugLabelId) {
+        this.drugLabelId = drugLabelId;
+    }
+
+    public String getDosingGuidelineId() {
+        return dosingGuidelineId;
+    }
+
+    public void setDosingGuidelineId(String dosingGuidelineId) {
+        this.dosingGuidelineId = dosingGuidelineId;
+    }
 }

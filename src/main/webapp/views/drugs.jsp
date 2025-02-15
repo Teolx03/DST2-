@@ -43,7 +43,10 @@
     </style>
 </head>
 <body>
-<jsp:include page="head.jsp" />
+<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Precision Medicine Matching System</a>
+
+</nav>
 
 <div class="container-fluid">
     <div class="row">
@@ -59,9 +62,11 @@
                 <table class="table table-striped table-sm">
                     <thead>
                     <tr>
-                        <th>#</th>
+                        <th>Drug IDs</th>
                         <th>Name</th>
                         <th>Drug Url</th>
+                        <th>Drug Label IDs</th>
+                        <th>Dosing Guideline IDs</th>
                         <th>Biomarker</th>
                     </tr>
                     </thead>
@@ -70,7 +75,40 @@
                         <tr>
                             <td>${item.id}</td>
                             <td>${item.name}</td>
-                            <td>${item.drugUrl}</td>
+                            <td>
+                                <a href="https://www.pharmgkb.org${item.drugUrl}" target="_blank">
+                                        ${item.drugUrl}
+                                </a>
+                            </td>
+
+                            <td>
+                                <c:choose>
+                                    <c:when test="${empty item.drugLabelId}">
+                                        <span class="text-muted">None</span>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:forTokens items="${item.drugLabelId}" delims="," var="labelId">
+                                            <a href="${pageContext.request.contextPath}/drugLabels#${labelId}">${labelId}</a><br/>
+                                        </c:forTokens>
+                                    </c:otherwise>
+                                </c:choose>
+                            </td>
+
+
+                            <td>
+                                <c:choose>
+                                    <c:when test="${empty item.dosingGuidelineId}">
+                                        <span class="text-muted">None</span>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:forTokens items="${item.dosingGuidelineId}" delims="," var="dgId">
+                                            <a href="${pageContext.request.contextPath}/dosingGuideline#${dgId}">${dgId}</a><br/>
+                                        </c:forTokens>
+                                    </c:otherwise>
+                                </c:choose>
+                            </td>
+
+
                             <td>${item.biomarker}</td>
                         </tr>
                     </c:forEach>

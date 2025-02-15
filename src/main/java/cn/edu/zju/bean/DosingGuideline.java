@@ -26,6 +26,7 @@ public class DosingGuideline {
     private String summaryMarkdown;
     private String textMarkdown;
     private String raw;
+    private String drugLabelIds;
 
     public String getRaw() {
         return raw;
