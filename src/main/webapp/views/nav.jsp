@@ -17,7 +17,18 @@
                 </a>
             </li>
         </ul>
-
+        <li class="nav-item">
+            <a class='nav-link ${param.active == "matching" ? "active" : ""}' href="<%=request.getContextPath()%>/matching">
+                <span data-feather="file-text"></span>
+                Matching
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class='nav-link ${param.active == "samples" ? "active" : ""}' href="<%=request.getContextPath()%>/samples">
+                <span data-feather="file-text"></span>
+                Samples
+            </a>
+        </li>
         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
             <span>Precision Medicine Knowledge Base</span>
             <a class="d-flex align-items-center text-muted" href="#">
