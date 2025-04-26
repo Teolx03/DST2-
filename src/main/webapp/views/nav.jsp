@@ -5,6 +5,7 @@
   Time: 17:04
   To change this template use File | Settings | File Templates.
 --%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page isELIgnored="false" %>
 <nav class="col-md-2 d-none d-md-block bg-light sidebar">
@@ -14,18 +15,6 @@
                 <a class='nav-link ${param.active == "dashboard" ? "active" : ""}' href="<%=request.getContextPath()%>/">
                     <span data-feather="home"></span>
                     Dashboard <span class="sr-only">(current)</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class='nav-link ${param.active == "matching_index" ? "active" : ""}' href="<%=request.getContextPath()%>/matchingIndex">
-                    <span data-feather="file"></span>
-                    Matching
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class='nav-link ${param.active == "samples" ? "active" : ""}' href="<%=request.getContextPath()%>/samples">
-                    <span data-feather="file"></span>
-                    Samples
                 </a>
             </li>
         </ul>
