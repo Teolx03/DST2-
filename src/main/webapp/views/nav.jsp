@@ -5,7 +5,6 @@
   Time: 17:04
   To change this template use File | Settings | File Templates.
 --%>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page isELIgnored="false" %>
 <nav class="col-md-2 d-none d-md-block bg-light sidebar">
@@ -59,6 +58,12 @@
                 <a class='nav-link ${param.active == "comments" ? "active" : ""}' href="<%=request.getContextPath()%>/comments">
                     <span data-feather="message-circle"></span>
                     Comment Section
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class='nav-link ${param.active == "query" ? "active" : ""}' href="<%=request.getContextPath()%>/query">
+                    <span data-feather="file-text"></span>
+                    Query
                 </a>
             </li>
         </ul>
