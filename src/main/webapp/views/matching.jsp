@@ -42,9 +42,16 @@
                         <label for="uploaded_by">Uploaded By:</label>
                         <input type="text" class="form-control" id="uploaded_by" name="uploaded_by" required>
                     </div>
-                    <div class="form-group">
+                    <div class="custom-file">
                         <label for="file">File:</label>
-                        <input type="file" class="form-control-file" id="file" name="file" required>
+                        <input
+                                type="file"
+                                class="custom-file-input"
+                                id="file"
+                                name="file"
+                                required
+                                lang="en">
+                        <label class="custom-file-label" for="file">Choose file</label>
                     </div>
                     <button type="submit" class="btn btn-primary">Upload</button>
                 </form>
@@ -52,5 +59,11 @@
         </main>
     </div>
 </div>
+
+<script src="<%=request.getContextPath()%>/static/js/bs-custom-file-input.min.js"></script>
+<script>
+    bsCustomFileInput.init();
+</script>
+
 </body>
 </html>
