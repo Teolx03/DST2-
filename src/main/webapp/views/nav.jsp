@@ -43,6 +43,12 @@
                     Dosing Guideline
                 </a>
             </li>
+            <li class="nav-item">
+                <a class='nav-link ${param.active == "query" ? "active" : ""}' href="<%=request.getContextPath()%>/query">
+                    <span data-feather="file-text"></span>
+                    Query
+                </a>
+            </li>
         </ul>
     </div>
 </nav>
