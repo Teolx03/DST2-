@@ -36,6 +36,11 @@
     </style>
 </head>
 <body>
+<jsp:include page="/views/head.jsp" />
+<jsp:include page="/views/nav.jsp">
+    <jsp:param name="active" value="query" />
+</jsp:include>
+
 <jsp:include page="nav.jsp">
     <jsp:param name="active" value="query" />
 </jsp:include>
