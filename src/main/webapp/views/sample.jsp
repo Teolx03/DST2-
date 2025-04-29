@@ -1,14 +1,14 @@
 <%--
   Created by IntelliJ IDEA.
-  User: hello
-  Date: 2019-12-3
-  Time: 15:37
+  User: 24181
+  Date: 2025/4/26
+  Time: 23:12
   To change this template use File | Settings | File Templates.
 --%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page isELIgnored="false" %>
-
 
 <!doctype html>
 <html lang="en">
@@ -42,32 +42,6 @@
             }
         }
     </style>
-
-    <style>
-        tr:target {
-            background-color: #fff3cd !important; /* yellow */
-        }
-    </style>
-
-    <script>
-        window.addEventListener('DOMContentLoaded', () => {
-            const hash = window.location.hash.substring(1); // e.g., "PA166104826"
-            if (hash) {
-                // Remove previous highlights if any
-                document.querySelectorAll('tr.highlighted').forEach(tr => {
-                    tr.classList.remove('highlighted');
-                });
-
-                // Highlight the row with matching ID
-                const row = document.getElementById(hash);
-                if (row) {
-                    row.classList.add('highlighted');
-                    row.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
-            }
-        });
-    </script>
-
 </head>
 <body>
 <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
@@ -78,30 +52,30 @@
 <div class="container-fluid">
     <div class="row">
         <jsp:include page="nav.jsp" >
-            <jsp:param name="active" value="drug_labels" />
+            <jsp:param name="active" value="samples" />
         </jsp:include>
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h2>Drug Labels</h2>
+                <h2>Samples</h2>
             </div>
             <div class="table-responsive">
                 <table class="table table-striped table-sm">
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>Source</th>
-                        <th>Dosing Information</th>
-                        <th>Summary Markdown</th>
+                        <th>Uploaded By</th>
+                        <th>Uploaded At</th>
+                        <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${drugLabels}" var="item">
-                        <tr id="${item.id}">
+                    <c:forEach items="${samples}" var="item" varStatus="loop">
+                        <tr>
                             <td>${item.id}</td>
-                            <td>${item.source}</td>
-                            <td>${item.dosingInformation}</td>
-                            <td>${item.summaryMarkdown}</td>
+                            <td>${item.uploadedBy}</td>
+                            <td>${item.createdAt}</td>
+                            <td><a href="matching?sampleId=${item.id}">matching</a></td>
                         </tr>
                     </c:forEach>
 

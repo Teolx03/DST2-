@@ -41,9 +41,37 @@
             }
         }
     </style>
+    <style>
+        tr:target {
+            background-color: #d1ecf1 !important; /* light blue */
+        }
+    </style>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const hash = window.location.hash.substring(1); // e.g., "PA166104931"
+            if (hash) {
+                // Remove old highlight if any
+                document.querySelectorAll('tr.highlighted').forEach(tr => {
+                    tr.classList.remove('highlighted');
+                });
+
+                // Add highlight to the target row
+                const row = document.getElementById(hash);
+                if (row) {
+                    row.classList.add('highlighted');
+                    // Optional: scroll to it manually (smoother on some browsers)
+                    row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+        });
+    </script>
+
 </head>
 <body>
-<jsp:include page="head.jsp" />
+<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Precision Medicine Matching System</a>
+
+</nav>
 
 <div class="container-fluid">
     <div class="row">
@@ -69,7 +97,7 @@
                     </thead>
                     <tbody>
                     <c:forEach items="${dosingGuidelines}" var="item">
-                        <tr>
+                        <tr id="${item.id}">
                             <td>${item.id}</td>
                             <td>${item.name}</td>
                             <td>${item.recommendation}</td>
