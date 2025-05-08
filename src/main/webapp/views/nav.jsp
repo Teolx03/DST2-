@@ -66,6 +66,12 @@
                     Query
                 </a>
             </li>
+            <li class="nav-item">
+                <a class='nav-link ${param.active == "register" ? "active" : ""}' href="<%=request.getContextPath()%>/register">
+                    <span data-feather="file-text"></span>
+                    Register
+                </a>
+            </li>
         </ul>
     </div>
 </nav>

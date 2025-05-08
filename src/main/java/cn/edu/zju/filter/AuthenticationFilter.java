@@ -23,11 +23,11 @@ public class AuthenticationFilter implements Filter {
                 chain.doFilter(request, response);
             } else {
                 response.setContentType("text/html");
-                response.getWriter().write("You are not allowed to view dosing guideline, please <a href='signin'>sign in</a> first.");
+                response.getWriter().write("You are not allowed to view dosing guideline, please <a href='signin'>sign in</a> or <a href='register'>register first.");
             }
         } else {
             response.setContentType("text/html");
-            response.getWriter().write("You are not allowed to view dosing guideline, please <a href='signin'>sign in</a> first.");
+            response.getWriter().write("You are not allowed to view dosing guideline, please <a href='signin'>sign in</a> or <a href='register'>register first.");
         }
     }
 }

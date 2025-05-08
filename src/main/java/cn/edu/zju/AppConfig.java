@@ -27,14 +27,14 @@ public class AppConfig {
                 this.jdbcUsername = properties.getProperty("jdbc.username");
                 this.jdbcPassword = properties.getProperty("jdbc.password");
             } catch (IOException e) {
-                log.info("", e);
+                log.error("加载配置文件失败: {}", e.getMessage(), e);
             }
         } finally {
             if (resourceAsStream != null) {
                 try {
                     resourceAsStream.close();
                 } catch (IOException e) {
-                    log.info("", e);
+                    log.error("关闭配置文件流时发生错误: {}", e.getMessage(), e);
                 }
             }
         }
