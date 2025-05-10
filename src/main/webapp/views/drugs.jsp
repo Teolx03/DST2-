@@ -54,10 +54,27 @@
             <jsp:param name="active" value="drugs" />
         </jsp:include>
 
+        <c:choose>
+            <c:when test="${not empty searchResult}">
+                <c:set var="drugs" value="${searchResult}" />
+            </c:when>
+            <c:otherwise>
+                <c:set var="drugs" value="${drugs}" />
+            </c:otherwise>
+        </c:choose>
+
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h2>Drugs</h2>
             </div>
+
+            <!-- search panel -->
+            <form action="${pageContext.request.contextPath}/searchDrug" method="get" class="form-inline mb-3">
+                <input type="text" name="keyword" class="form-control mr-2" placeholder="Search Drug ID or Name"
+                       value="${param.keyword}" required>
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+
             <div class="table-responsive">
                 <table class="table table-striped table-sm">
                     <thead>
@@ -71,48 +88,51 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${drugs}" var="item">
-                        <tr>
-                            <td>${item.id}</td>
-                            <td>${item.name}</td>
-                            <td>
-                                <a href="https://www.pharmgkb.org${item.drugUrl}" target="_blank">
-                                        ${item.drugUrl}
-                                </a>
-                            </td>
-
-                            <td>
-                                <c:choose>
-                                    <c:when test="${empty item.drugLabelId}">
-                                        <span class="text-muted">None</span>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <c:forTokens items="${item.drugLabelId}" delims="," var="labelId">
-                                            <a href="${pageContext.request.contextPath}/drugLabels#${labelId}">${labelId}</a><br/>
-                                        </c:forTokens>
-                                    </c:otherwise>
-                                </c:choose>
-                            </td>
-
-
-                            <td>
-                                <c:choose>
-                                    <c:when test="${empty item.dosingGuidelineId}">
-                                        <span class="text-muted">None</span>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <c:forTokens items="${item.dosingGuidelineId}" delims="," var="dgId">
-                                            <a href="${pageContext.request.contextPath}/dosingGuideline#${dgId}">${dgId}</a><br/>
-                                        </c:forTokens>
-                                    </c:otherwise>
-                                </c:choose>
-                            </td>
-
-
-                            <td>${item.biomarker}</td>
-                        </tr>
-                    </c:forEach>
-
+                    <c:choose>
+                        <c:when test="${empty drugs}">
+                            <tr>
+                                <td colspan="6" class="text-center">No results found.</td>
+                            </tr>
+                        </c:when>
+                        <c:otherwise>
+                            <c:forEach items="${drugs}" var="item">
+                                <tr>
+                                    <td>${item.id}</td>
+                                    <td>${item.name}</td>
+                                    <td>
+                                        <a href="https://www.pharmgkb.org${item.drugUrl}" target="_blank">
+                                                ${item.drugUrl}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <c:choose>
+                                            <c:when test="${empty item.drugLabelId}">
+                                                <span class="text-muted">None</span>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <c:forTokens items="${item.drugLabelId}" delims="," var="labelId">
+                                                    <a href="${pageContext.request.contextPath}/drugLabels#${labelId}">${labelId}</a><br/>
+                                                </c:forTokens>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </td>
+                                    <td>
+                                        <c:choose>
+                                            <c:when test="${empty item.dosingGuidelineId}">
+                                                <span class="text-muted">None</span>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <c:forTokens items="${item.dosingGuidelineId}" delims="," var="dgId">
+                                                    <a href="${pageContext.request.contextPath}/dosingGuideline#${dgId}">${dgId}</a><br/>
+                                                </c:forTokens>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </td>
+                                    <td>${item.biomarker}</td>
+                                </tr>
+                            </c:forEach>
+                        </c:otherwise>
+                    </c:choose>
                     </tbody>
                 </table>
             </div>

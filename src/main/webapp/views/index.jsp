@@ -65,6 +65,23 @@
                 </p>
             </div>
 
+            <!-- 🧬 Matching Section -->
+            <div class="bg-light p-3 mb-4 rounded shadow-sm">
+                <h5 class="fw-bold mb-2">🧬 Matching</h5>
+                <p class="mb-0">
+                    This page allows users to upload their genetic variant files for analysis. Uploaded variants are matched against pre-annotated data to identify pharmacogenomic relevance, helping users explore how genetic differences may affect drug responses.
+                </p>
+            </div>
+
+            <!-- 📂 Samples Section -->
+            <div class="bg-light p-3 mb-4 rounded shadow-sm">
+                <h5 class="fw-bold mb-2">📂 Samples</h5>
+                <p class="mb-0">
+                    This page manages the uploaded genetic variant files. Users can view and manage their submitted samples, including information about the uploader and upload time, ensuring organized tracking of genetic data.
+                </p>
+            </div>
+
+
             <!-- 🧬 Drugs Section -->
             <div class="bg-light p-3 mb-4 rounded shadow-sm">
                 <h5 class="fw-bold mb-2">
@@ -99,6 +116,25 @@
                     highlighting actionable recommendations where available.
                 </p>
             </div>
+
+            <!-- 💬 Comment Section -->
+            <div class="bg-light p-3 mb-4 rounded shadow-sm">
+                <h5 class="fw-bold mb-2">💬 Comment Section</h5>
+                <p class="mb-0">
+                    This page provides a communication area where users can leave comments, feedback, or discuss pharmacogenomic findings, supporting collaboration and knowledge sharing within the platform.
+                </p>
+            </div>
+
+            <!-- 🔎 Query Section -->
+            <div class="bg-light p-3 mb-5 rounded shadow-sm">
+                <h5 class="fw-bold mb-2">🔎 Query</h5>
+                <p class="mb-0">
+                    This page allows users to search for specific drug IDs or names to quickly retrieve relevant dosing guidelines and pharmacogenomic information, enhancing accessibility to precision medicine knowledge.
+                </p>
+            </div>
+
+
+
         </main>
     </div>
 </div>
