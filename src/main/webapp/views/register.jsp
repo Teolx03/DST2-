@@ -1,5 +1,6 @@
 <%@ page isELIgnored="false" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  <!-- 添加JSTL标签库 -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,10 +12,20 @@
   <div class="row justify-content-center">
     <div class="col-md-6">
       <h2 class="text-center mb-4">用户注册</h2>
+
+      <!-- 新增：错误信息展示 -->
+      <c:if test="${not empty error}">
+        <div class="alert alert-danger alert-dismissible fade show">
+            ${error}
+          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+      </c:if>
+
       <form action="<%= request.getContextPath() %>/register" method="post">
         <div class="mb-3">
           <label for="username" class="form-label">用户名</label>
-          <input type="text" class="form-control" id="username" name="username" required>
+          <input type="text" class="form-control" id="username" name="username"
+                 value="${param.username}" required>  <!-- 保留已输入的用户名 -->
         </div>
         <div class="mb-3">
           <label for="password" class="form-label">密码</label>
