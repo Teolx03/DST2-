@@ -16,10 +16,19 @@ public class SampleDao extends BaseDao {
         AtomicInteger key = new AtomicInteger();
         DBUtils.execSQL(connection -> {
             try {
-                PreparedStatement preparedStatement = connection.prepareStatement("insert into sample(created_at, uploaded_by) values (?,?)", Statement.RETURN_GENERATED_KEYS);
+                PreparedStatement preparedStatement = connection.prepareStatement(
+                    "insert into sample(created_at, uploaded_by) values (?, ?)",
+                    Statement.RETURN_GENERATED_KEYS
+                );
                 preparedStatement.setTimestamp(1, new Timestamp(new Date().getTime()));
                 preparedStatement.setString(2, uploadedBy);
-                key.set(preparedStatement.executeUpdate());
+                preparedStatement.executeUpdate();
+
+                // 获取生成的主键 ID
+                ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    key.set(generatedKeys.getInt(1));
+                }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -37,7 +46,7 @@ public class SampleDao extends BaseDao {
                     int sampleId = resultSet.getInt("id");
                     Date createdAt = new Date(resultSet.getTimestamp("created_at").getTime());
                     String uploadedBy = resultSet.getString("uploaded_by");
-                    Sample sample = new Sample(sampleId, createdAt, uploadedBy);
+                    Sample sample = new Sample(sampleId,createdAt, uploadedBy);
                     samples.add(sample);
                 }
             } catch (SQLException e) {

@@ -17,13 +17,8 @@ public class SampleServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // 获取所有 Sample 数据
         List<Sample> samples = sampleDao.findAll();
-
-        // 将数据设置为请求属性
         request.setAttribute("samples", samples);
-
-        // 转发到 JSP 页面
         request.getRequestDispatcher("/views/sample.jsp").forward(request, response);
     }
 }

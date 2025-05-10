@@ -6,6 +6,7 @@ public class Sample {
     private int id;
     private Date createdAt;
     private String uploadedBy;
+    private String dataType;
 
     public Sample() {
     }
@@ -13,6 +14,7 @@ public class Sample {
     public Sample(int id, Date createdAt, String uploadedBy) {
         this.id = id;
         this.createdAt = createdAt;
+        this.dataType = dataType;
         this.uploadedBy = uploadedBy;
     }
 
@@ -39,4 +41,7 @@ public class Sample {
     public void setUploadedBy(String uploadedBy) {
         this.uploadedBy = uploadedBy;
     }
+
+    public String getDataType() {return dataType;}
+    public void setDataType(String dataType) {this.dataType = dataType;}
 }
